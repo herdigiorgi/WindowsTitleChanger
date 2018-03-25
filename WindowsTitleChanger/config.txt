@@ -1,0 +1,15 @@
+﻿# This is a sample configuration file
+# the lines starting with '#' like this one, are ignored
+# the format is simple, the first line is the process name
+# and the next line is the desired title
+
+# change the midori process name to allways have the midori title
+midori
+midori
+
+# you get the idea
+putty
+putty
+
+code
+vscode
