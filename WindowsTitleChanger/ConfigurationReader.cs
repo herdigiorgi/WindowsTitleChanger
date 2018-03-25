@@ -11,16 +11,29 @@ namespace WindowsTitleChanger
     {
         private ConfigurationReader(){}
 
-        private static String CONFIGURATION_FILE_NAME = @"config.txt";
+        private static String DEFAULT_CONFIGURATION_FILE_NAME = @"config.txt";
+        public static String CONFIGURATION_FILE_PATH
+        {
+            get
+            {
+                var home = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+                var confPath = Path.Combine(home, DEFAULT_CONFIGURATION_FILE_NAME);
+                if (!File.Exists(confPath))
+                {
+                    File.Copy(DEFAULT_CONFIGURATION_FILE_NAME, confPath);
+                }
+                return confPath;
+            }
+        }
 
         public static void OpenFileInEditor()
         {
-            Process.Start("notepad.exe", CONFIGURATION_FILE_NAME);
+            Process.Start("notepad.exe", CONFIGURATION_FILE_PATH);
         }
 
         public static IEnumerable<TitleConfiguration> ReadConfiguration()
         {
-            string[] lines = System.IO.File.ReadAllLines(CONFIGURATION_FILE_NAME);
+            string[] lines = System.IO.File.ReadAllLines(CONFIGURATION_FILE_PATH);
             var filteredLines = FilterLines(ref lines);
             return CreateConfiguration(filteredLines);
         }

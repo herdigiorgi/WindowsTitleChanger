@@ -11,6 +11,7 @@ namespace WindowsTitleChanger
         static void Main(string[] args)
         {
             Console.WriteLine("Windows Title Changer Started");
+            Console.WriteLine($"Using config: {ConfigurationReader.CONFIGURATION_FILE_PATH}");
             ConfigurationReader.OpenFileInEditor();
             printConfiguration();
             while (true)
